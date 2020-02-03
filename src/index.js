@@ -1,7 +1,11 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
-import App from './App';
+import Counter from './App';
+import store from './redux/store'
 
-ReactDOM.render(<App />, document.getElementById('root'));
+ReactDOM.render(<Counter store={store}/>, document.getElementById('root'));
 
+store.subscribe(() => {
+  ReactDOM.render(<Counter store={store}/>, document.getElementById('root'));
+})

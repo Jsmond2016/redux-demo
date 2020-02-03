@@ -1,59 +1,40 @@
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+
+import {increment, decrement, incrementWithOdd, decrementWithEven} from './redux/actions' 
 
 class Counter extends React.Component{
   constructor(props) {
     super(props)
     this.selectRef = React.createRef()
-    this.state = {
-      count: 1,
-      selectValue: 1,
-    }
-  }
-
-  changeSelectValue = () => {
-    this.setState({
-      selectValue: Number(this.selectRef.current.value),
-    })
+    // this.state = {
+    //   count: 1,
+    // }
   }
 
   add = () => {
-    this.setState((state) => {
-      return {
-        count: state.count + state.selectValue
-      }
-    })
+    const number = Number(this.selectRef.current.value);
+    this.props.store.dispatch(increment(number))
   }
   
   minus = () => {
-    this.setState((state) => {
-      return {
-        count: state.count - state.selectValue
-      }
-    })
+    const number = Number(this.selectRef.current.value);
+    this.props.store.dispatch(decrement(number))
   }
   addOdd = () => {
-    if(this.state.count%2 === 1) {
-      this.setState((state) => {
-        return {
-          count: state.count + state.selectValue
-        }
-      })
+    if(this.props.store.getState().count %2 === 1) {
+      const number = Number(this.selectRef.current.value);
+      this.props.store.dispatch(incrementWithOdd(number))
     }
   }
   minusEven = (state) => {
-    if(this.state.count%2 === 0) {
-      this.setState((state) => {
-        return {
-          count: state.count - state.selectValue
-        }
-      })
-    }
+    if(this.props.store.getState().count % 2 === 0) {
+      const number = Number(this.selectRef.current.value);
+      this.props.store.dispatch(decrementWithEven(number))
+      }
   }
 
   render() {
-    const { count } = this.state
+    const { count } = this.props.store.getState()
     return (
       <div>
         <div>
