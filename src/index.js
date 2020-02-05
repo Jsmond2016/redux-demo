@@ -1,11 +1,12 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import { Provider } from 'react-redux';
 import './index.css';
-import Counter from './App';
+import Counter from './container/App';
 import store from './redux/store'
 
-ReactDOM.render(<Counter store={store}/>, document.getElementById('root'));
-
-store.subscribe(() => {
-  ReactDOM.render(<Counter store={store}/>, document.getElementById('root'));
-})
+ReactDOM.render(
+  <Provider store={store}>
+    <Counter />
+  </Provider>,
+  document.getElementById('root'));
