@@ -8,7 +8,6 @@ import PropTypes from 'prop-types';
 class Counter extends React.Component{
 
   static propTypes = {
-    count: PropTypes.number.isRequired,
     increment: PropTypes.func.isRequired,
     decrement: PropTypes.func.isRequired,
     incrementWithOdd: PropTypes.func.isRequired,
@@ -31,13 +30,13 @@ class Counter extends React.Component{
     this.props.decrement(number)
   }
   addOdd = () => {
-    if(this.props.count %2 === 1) {
+    if(this.props.counter.count %2 === 1) {
       const number = Number(this.selectRef.current.value)
       this.props.incrementWithOdd(number)
     }
   }
   minusEven = (state) => {
-    if(this.props.count % 2 === 0) {
+    if(this.props.counter.count % 2 === 0) {
       const number = Number(this.selectRef.current.value)
       this.props.decrementWithEven(number)
       }
@@ -49,7 +48,7 @@ class Counter extends React.Component{
   }
 
   render() {
-    const { count } = this.props
+    const { count } = this.props.counter
     return (
       <div>
         <div>

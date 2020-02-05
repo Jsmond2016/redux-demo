@@ -39,7 +39,7 @@ const mapDispatchToProps = (dispatch) => {
 
 // 写法二：简化版
 export default connect(
-  state => ({count: state.count}),
+  state => ({counter: state.counter, user: state.user}),
   { 
     increment,
     decrement,
