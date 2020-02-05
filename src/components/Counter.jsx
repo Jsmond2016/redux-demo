@@ -12,7 +12,8 @@ class Counter extends React.Component{
     increment: PropTypes.func.isRequired,
     decrement: PropTypes.func.isRequired,
     incrementWithOdd: PropTypes.func.isRequired,
-    decrementWithEven: PropTypes.func.isRequired
+    decrementWithEven: PropTypes.func.isRequired,
+    incrementAsync: PropTypes.func.isRequired,  // 异步 reducer
   }
 
   constructor(props) {
@@ -42,6 +43,11 @@ class Counter extends React.Component{
       }
   }
 
+  addAsync = () => {
+    const number = Number(this.selectRef.current.value)
+    this.props.incrementAsync(number)
+  }
+
   render() {
     const { count } = this.props
     return (
@@ -57,7 +63,8 @@ class Counter extends React.Component{
         <button onClick={this.add}>+</button>
         <button onClick={this.minus}>-</button>
         <button onClick={this.addOdd}>+ 当且仅当为奇数的时候新增</button>
-        <button onClick={this.minusEven}>+ 当且仅当为偶数的时候减少</button>
+        <button onClick={this.minusEven}>- 当且仅当为偶数的时候减少</button>
+        <button onClick={this.addAsync}>异步async +</button>
       </div>
     )
   }

@@ -1,8 +1,13 @@
-import React, { Component } from 'react'
 import { connect } from 'react-redux'
 
 import Counter from '../components/Counter'
-import { increment, decrement, incrementWithOdd, decrementWithEven } from '../redux/actions'
+import {
+  increment,
+  decrement,
+  incrementWithOdd,
+  decrementWithEven,
+  incrementAsync
+} from '../redux/actions'
 
 const mapStateToProps = (state) => {
   return {
@@ -15,7 +20,8 @@ const mapDispatchToProps = (dispatch) => {
     increment: (number) => dispatch(increment(number)),
     decrement: (number) => dispatch(decrement(number)),
     incrementWithOdd: (number) => dispatch(incrementWithOdd(number)),
-    decrementWithEven: (number) => dispatch(decrementWithEven(number))
+    decrementWithEven: (number) => dispatch(decrementWithEven(number)),
+    incrementAsync: number => dispatch(incrementAsync(number))
   }
 }
 
@@ -38,6 +44,7 @@ export default connect(
     increment,
     decrement,
     incrementWithOdd,
-    decrementWithEven
+    decrementWithEven,
+    incrementAsync
   }
 )(Counter)
